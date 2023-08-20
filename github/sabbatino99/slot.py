@@ -1,6 +1,28 @@
+import random
+
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
+
+ROWS = 3
+COLS = 3
+
+symobol_count = {
+    'A': 2,
+    'B': 4,
+    'C': 6,
+    'D': 8
+}
+
+def slot_machine_spin(rows, cols, symbols):
+    all_symbols = []
+    for symbol, symobol_count in symbols.items():
+        for _ in range(symobol_count):
+            all_symbols.append(symbol)
+
+    colums = [[] , [] ,[]]
+
+    
 
 def deposit():
     while True:
@@ -39,7 +61,8 @@ def get_bet():
             else:
                 print(f'Amount must be between ${MIN_BET} - ${MAX_BET}.')
         else:
-            print('Please Enter a number.')    
+            print('Please Enter a number.')  
+
     return amount
 
 
@@ -50,6 +73,9 @@ def main():
         bet = get_bet()
         total_bet = bet * lines
     
-    
+        if total_bet > balance:
+            print("You don not have enought to bet that amount, your current balance is: ${balance}")
+        else:
+            break  
     print(f'You are betting ${bet} on {lines} lines. The Total bet is: ${total_bet}')
 main()
